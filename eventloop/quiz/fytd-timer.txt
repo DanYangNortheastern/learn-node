@@ -1,1 +1,10 @@
 - In eventloop/timer.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+
+order:
+
+"foo" (initial execution, before the event loop, from foo(2))
+"baz" (initial execution, before the event loop, from foo(2))
+"foo" (initial execution, before the event loop, from foo(1))
+"baz" (initial execution, before the event loop, from foo(1))
+"2 : bar" (from the timers phase, setTimeout callback from foo(2))
+"1 : bar" (from the timers phase, setTimeout callback from foo(1))

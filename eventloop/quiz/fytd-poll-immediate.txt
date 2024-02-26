@@ -1,2 +1,10 @@
 - Explain the order of execution in terms of the event loop for eventloop/immediate.js.
 - Will the order of execution change if timeout is changed to 0? Why or why not?
+
+The file read operation is initiated.
+The fs.readFile callback executes after the file is read, including the 10 ms busy-wait.
+The file data is printed.
+"I was scheduled to run immediately" is printed (from the setImmediate callback, during the check phase).
+"Xms have passed since I was scheduled" is printed (from the setTimeout callback, during the timers phase).
+
+If the setTimeout delay is changed to 0, the order of execution remains the same. The setImmediate() callback will still run before the setTimeout() callback because the check phase (where setImmediate callbacks are processed) occurs immediately after the poll phase and before the timers phase.

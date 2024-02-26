@@ -1,1 +1,7 @@
 - In eventloop/poll.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+
+order:
+
+"foo" (Initial execution, before the event loop, from calling foo())
+"done" (Initial execution, before the event loop, from the console.log after calling foo())
+"Read Error" (From the poll phase of the event loop, after the fs.readFile operation completes)
